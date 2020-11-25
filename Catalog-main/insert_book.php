@@ -1,13 +1,37 @@
+<?php
+include 'connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Entry Results</title>
 </head>
+
 <body>
     <h1>Book Entry Results</h1>
     <?php
+    if (isset($_POST['submit'])) {
+        $isbn   =   $_POST['isbn'];
+        $author =   $_POST['author'];
+        $title  =   $_POST['title'];
+        $price  =   $_POST['price'];
+
+        $sql = "INSERT INTO `catalogs`(`isbn`,`author`,`title`,`price`)
+                 VALUE ('$isbn','$author','$title','$price')";
+
+                 mysqli_query($conn,$sql);
+
+                 echo"<script>aler('Book inserted');</script>";
+                 echo"<script>window.location.assign('display_book.php');</script>";
+        # code...
+    }
+    else {
+        echo"<script>alert('Failed to insert Book')</script>";
+    }
+    mysqli_close($conn);
     // TODO 1: Create short variable names.
 
 
@@ -28,4 +52,5 @@
 
     ?>
 </body>
+
 </html>

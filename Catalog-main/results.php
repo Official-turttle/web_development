@@ -73,6 +73,8 @@ $i=1;
             # code...
         }     
     }
+    mysqli_close($conn); 
+
 
 
     // TODO 1: Create short variable names.
